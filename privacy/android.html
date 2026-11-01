@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salah Bar for Android: Privacy Policy</title>
+<meta name="description" content="Salah Bar's privacy policy: what the
+app keeps on your device, and what Sync with Google Drive stores in your
+own Google Drive.">
+<link rel="icon" type="image/png" href="../icon-64.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../"><img src="../icon-64.png" alt="" width="32" height="32"> Salah Bar</a>
+  <nav><a href="../">Home</a> <a href="../privacy/">Privacy</a></nav>
+</header>
+<main class="doc">
+<h1 id="salah-bar-for-android-privacy-policy">Salah Bar for Android:
+Privacy Policy</h1>
+<p><em>Last updated: 31 October 2026</em></p>
+<p><strong>In short: Salah Bar collects nothing.</strong> There are no
+accounts, no analytics, no ads and no tracking. Your settings, your
+location and your prayer log stay on your phone, unless you choose to
+sync them through your own Google Drive or a file in your own cloud
+drive (or open Nearby mosques, which asks OpenStreetMap for the mosques
+around you, or a map, which loads map images of that area). The
+developer never receives any of your data. The one exception, off until
+you turn it on, is the weather: then your location, rounded to about 10
+km, goes to Open-Meteo (see below).</p>
+<h2 id="what-stays-on-your-phone">What stays on your phone</h2>
+<ul>
+<li><strong>Your location.</strong> With your permission, Android tells
+Salah Bar your location, to calculate prayer times and the Qibla
+direction (an approximate location is enough; Nearby mosques uses your
+precise location, if you allow it, to tell which mosque is nearest). The
+calculation happens on your phone. The place name (such as “Manisa, TR”)
+and its time zone come from a list of cities built into the app, so your
+location is never sent anywhere to be named. Salah Bar keeps your last
+location on your phone so the times are right the next time it opens.
+Your location is never synced to a cloud drive.</li>
+<li><strong>Your watch.</strong> If you install Salah Bar on a Wear OS
+watch, your phone hands it your settings, the city on show (with its
+location) and the prayers you marked around today, so the watch can
+calculate the times for its tile and complications; prayers you mark on
+the watch go back to your phone’s prayer log. They go over Wear OS’s own
+phone-to-watch connection (Google Play services), which may carry them
+through Google’s servers when the watch is connected by Wi-Fi rather
+than Bluetooth. Nothing reaches the developer. On a watch with GPS, the
+watch’s Qibla can use the watch’s own location if you allow it on the
+watch: it’s used on the watch only, never sent to your phone or anywhere
+else, and left out of backups.</li>
+<li><strong>The camera (only if you use it).</strong> The Qibla screen’s
+Camera view shows what your rear camera sees with the Qibla drawn over
+it, and Settings → Iqama → Scan QR code reads your mosque’s QR code on
+the phone; the picture stays on screen and is never stored or sent.</li>
+<li><strong>Your settings</strong>, your saved cities, your prayer log,
+your Ramadan log, where you stopped in each surah, and any adhans and
+recitations you download.</li>
+<li><strong>Whether you’re busy.</strong> To keep the adhan quiet during
+a call, or when the phone is on silent or Do Not Disturb, Salah Bar
+checks at prayer time whether a call is in progress and how the ringer
+is set. It never listens to or records anything, and stores nothing
+about it.</li>
+<li><strong>Your calendar (only if you turn it on).</strong> In Settings
+→ Calendar you can let Salah Bar read your calendar’s events, to warn
+you about meetings that overlap a prayer, and write prayer blocks into a
+calendar you choose. The events are read on your phone and never sent
+anywhere. Salah Bar only ever changes or deletes the prayer blocks it
+created. If the calendar you choose syncs to an account (such as Google
+Calendar), that account’s service receives the blocks, as with any event
+you add.</li>
+<li><strong>Do Not Disturb during prayer (only if you turn it
+on).</strong> In Settings → Reminders you can let Salah Bar turn on Do
+Not Disturb for a few minutes at each prayer you choose. Android asks
+you to allow Do Not Disturb access first. Salah Bar only turns on its
+own quiet time and puts the phone back as it was afterwards; it keeps
+nothing about it but the current quiet time.</li>
+<li><strong>For sisters (only if you choose Sister).</strong> The
+excused days you log (when they started and ended, and whether after
+childbirth), pregnancy and nursing if you set them, and the fasts you
+have to make up are kept on your phone, to tell which prayers are
+excused and to predict the next start. Notifications, widgets and the
+watch never mention them.</li>
+<li><strong>Health Connect (only if you turn it on).</strong> In
+Settings → For sisters you can link Salah Bar with Health Connect, after
+Android asks your permission. Salah Bar then reads the menstruation
+periods of the last 180 days recorded there, so the prayers of those
+days count as excused, and writes the excused days you finish logging as
+menstruation periods. This data is used only for that: it is never sent
+to the developer or anyone else, never used for advertising, and never
+sold. You can remove the permission at any time in Health Connect.</li>
+<li><strong>The Tasbih counter</strong> is kept on your phone; it isn’t
+synced.</li>
+<li><strong>Reminders</strong> are scheduled on your phone with
+Android’s alarms and shown as notifications on your phone.</li>
+</ul>
+<h2 id="sync-only-if-you-turn-it-on">Sync (only if you turn it on)</h2>
+<p><strong>With Google Drive.</strong> In Settings → Sync and backup you
+can tap <em>Sign in with Google</em>. Salah Bar then asks Google for one
+permission only, to keep its own file in your Google Drive’s hidden app
+folder (the <code>drive.appdata</code> scope): it can’t see, open or
+change any of your other files in Drive. It keeps the same sync file
+described below there, <code>Salah Bar sync.json</code>, sending it
+straight from your phone to your own Google Drive over HTTPS; there is
+no Salah Bar server in between, and the developer never sees the file or
+your account. Signing in is handled by Google Play services, which keeps
+the permission; Salah Bar stores only your account’s email address on
+the phone, to show it and to sync in the background. Google’s privacy
+policy applies to your Google account and Drive. <em>Sign out</em> takes
+this phone’s data out of the file and stops syncing here; <em>Remove my
+data from Drive</em> deletes the file from your Drive (every device’s
+data in it) and takes Salah Bar’s access away. You can also remove Salah
+Bar’s access at any time from your Google Account (Security →
+Third-party apps), and Drive → Settings → Manage apps lets you delete
+its hidden data. Salah Bar’s use and transfer to any other app of
+information received from Google APIs will adhere to the <a
+href="https://developers.google.com/terms/api-services-user-data-policy">Google
+API Services User Data Policy</a>, including the Limited Use
+requirements: it only reads and writes its own sync file in your Drive,
+to sync your devices, and never uses it for anything else or passes it
+to anyone.</p>
+<p><strong>With a file.</strong> In Settings → Sync and backup you can
+instead choose a file in a cloud drive you already use (Google Drive,
+OneDrive, Nextcloud or any app that appears in Android’s file picker).
+Salah Bar then writes your settings, saved cities, prayer log, Ramadan
+log, excused days (For sisters), Khatma progress and Quran places to
+that file, with your phone’s name (as set in Android’s settings) so your
+other devices can show where the data came from, and reads what your
+other devices wrote there. The file goes only where you put it: Salah
+Bar has no server, and the developer never sees it. Your cloud drive’s
+own privacy policy applies to the file. “Stop syncing” takes this
+phone’s data out of the file. <strong>Export</strong> writes the same
+data to a file you choose, and <strong>Import</strong> reads one
+back.</p>
+<h2 id="androids-backup">Android’s backup</h2>
+<p>If backup is turned on in your phone’s settings, Android may include
+Salah Bar’s settings, logs and downloaded adhans in your phone’s backup
+to your Google account, as it does for most apps, so they come back on a
+new phone. Salah Bar leaves its Quran downloads, its sync link and its
+Health Connect link out of that backup. You can turn backup off in
+Android’s settings.</p>
+<h2 id="what-goes-over-the-internet">What goes over the internet</h2>
+<p>Salah Bar only connects to the services below, and only for the
+feature named. None of them receives your name, your settings or an
+account, and only OpenStreetMap and the Overpass API (for Nearby
+mosques), OpenFreeMap (for the maps) and Open-Meteo (for the weather, if
+you turn it on) receive a location, but like any web request each sees
+your phone’s IP address.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Service</th>
+<th>When</th>
+<th>What it receives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mp3quran.net</strong></td>
+<td>When you use the Quran tab: the list of reciters (at most once a
+week), the surahs you play or download, and ayah timings for Hifz</td>
+<td>Requests for those files</td>
+</tr>
+<tr>
+<td><strong>EveryAyah.com</strong></td>
+<td>Hifz with recitations it serves ayah by ayah</td>
+<td>Requests for those ayahs’ files</td>
+</tr>
+<tr>
+<td><strong>hisnmuslim.com</strong></td>
+<td>When you listen to a dua read by Hamad al-Duraihim (the default
+reciter), or by another reciter who has no recording of it</td>
+<td>A request for that dua’s recording</td>
+</tr>
+<tr>
+<td><strong>IslamHouse.com</strong></td>
+<td>When you listen to a dua read by Sulayman al-Shuwaihi or Walid Abu
+Ziyad (Duas → Reading and voice)</td>
+<td>A request for the reciter’s file that holds that dua</td>
+</tr>
+<tr>
+<td><strong>archive.org</strong> (the Internet Archive)</td>
+<td>When you listen to a dua read by Abu Ahmad al-Shaydhmi or the Dua
+&amp; Zikr app’s reciter</td>
+<td>A request for the reciter’s file that holds that dua</td>
+</tr>
+<tr>
+<td><strong>android.quran.com</strong></td>
+<td>When you open the list of Quran translations and tafsirs, or
+download one</td>
+<td>Requests for that list and those editions</td>
+</tr>
+<tr>
+<td><strong>files.quran.app</strong></td>
+<td>When you download the printed Mushaf pages</td>
+<td>Requests for those page images</td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>When you choose or preview an adhan from the online library</td>
+<td>A request for that adhan’s file</td>
+</tr>
+<tr>
+<td><strong>Diyanet</strong> (dinhizmetleri.diyanet.gov.tr, with
+e-Devlet’s copy at www.turkiye.gov.tr as the fallback),
+<strong>DITIB</strong> (www.ditib.de), <strong>JAIS</strong>
+(e-khutbah.jais.gov.my), <strong>JAKIM</strong> (www.islam.gov.my),
+<strong>Kuwait’s Ministry of Awqaf</strong> (www.awqaf.gov.kw,
+content.awqaf.gov.kw) and <strong>Morocco’s Ministry of Habous</strong>
+(www.habous.gov.ma) and <strong>Islamic Network</strong>
+(sermons.islamic.network, cdn.islamic.network: the UAE’s)</td>
+<td>Only for This week’s khutbah: when you open it, and when Today shows
+its card on a Thursday or Friday, for the country it follows (the one
+you chose, or the city on show’s, worked out on your phone); and when
+you open or download a khutbah’s PDF, Word file or recording</td>
+<td>A request for that authority’s list of khutbahs and for the files
+you open or download; nothing about you or where you are. For JAKIM and
+Kuwait, opening a khutbah’s text first reads that sermon’s own page to
+find its PDF. Egypt’s and Singapore’s pages open in Salah Bar’s own web
+view, like any web page you visit</td>
+</tr>
+<tr>
+<td><strong>YouTube</strong> (www.youtube.com)</td>
+<td>With Türkiye’s (Diyanet’s) khutbah list, at the same times (and on
+Friday until the week’s video is in)</td>
+<td>A request for the public feed of Salah Bar’s own YouTube channel, to
+find the week’s khutbah video; no account, no key, no cookies, nothing
+about you</td>
+</tr>
+<tr>
+<td><strong>YouTube’s player</strong> (www.youtube-nocookie.com)</td>
+<td>Only when you tap <em>Watch</em> on a week’s khutbah</td>
+<td>The video plays in YouTube’s privacy-enhanced player inside the app;
+Salah Bar sends nothing about you, clears the player’s cookies and
+storage when you close it, and <a
+href="https://policies.google.com/privacy">Google’s privacy policy</a>
+applies to the player</td>
+</tr>
+<tr>
+<td><strong>Wikimedia Commons</strong> (upload.wikimedia.org)</td>
+<td>Only when you play a name in the 99 Names (or a name-of-the-day
+card) or download the names for offline use</td>
+<td>Requests for the recordings you play or download</td>
+</tr>
+<tr>
+<td><strong>Your mosque’s website</strong> (the link you give) or
+<strong>islamic.app</strong> (api.islamic.app)</td>
+<td>Only with <em>Iqama times from your mosque</em> on (Settings →
+Prayer Times → Iqama): when you save the link, when you tap <em>Refresh
+now</em>, and once a week</td>
+<td>A request for the iqama timetable at that link (or that islamic.app
+mosque); nothing is sent with it</td>
+</tr>
+<tr>
+<td><strong>OpenStreetMap</strong> (Nominatim search)</td>
+<td>Only when you open Nearby mosques, on the Qibla screen</td>
+<td>The point to search around (your location or the city on show,
+rounded to about 100 m) (<a
+href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap’s
+privacy policy</a> applies)</td>
+</tr>
+<tr>
+<td><strong>Overpass API</strong> (overpass-api.de, a free OpenStreetMap
+search run by FOSSGIS e.V.)</td>
+<td>Only when you open Nearby mosques, on the Qibla screen, at the same
+time as the Nominatim search</td>
+<td>The same rounded point, to find every mosque mapped around it (<a
+href="https://www.fossgis.de/arbeitsgruppen/osm-server/nutzungsbedingungen/">FOSSGIS
+terms of use</a>)</td>
+</tr>
+<tr>
+<td><strong>Open-Meteo</strong> (api.open-meteo.com)</td>
+<td>Only with <em>Show the weather</em> on (Settings → Appearance): when
+you turn it on, then at most every 30 minutes while the app is open</td>
+<td>Your location rounded to 0.1° (about 10 km), to get the current
+weather there; nothing else is sent with it</td>
+</tr>
+<tr>
+<td><strong>OpenFreeMap</strong> (map tiles, from OpenStreetMap
+data)</td>
+<td>When a map is on screen: Nearby mosques, and the Qibla screen’s
+Map</td>
+<td>Requests for the map tiles of the area shown (<a
+href="https://openfreemap.org">OpenFreeMap</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The weather</strong> (off until you turn it on, on each
+phone). The sky behind the next prayer and in the widgets is worked out
+on the phone from the prayer times. If you turn on <em>Show the
+weather</em> (Settings → Appearance), Salah Bar first says what it will
+send, then asks Open-Meteo (open-meteo.com) for the current weather at
+the city on show rounded to 0.1° (about 10 km), at most every 30 minutes
+while the app is open (never in the background), with no account, key,
+cookie or identifier. The answer (clouds, rain, snow…) stays on the
+phone, is drawn by its widgets, and is left out of Android’s backup.
+Turning the switch off stops the requests and forgets the last answer.
+Open-Meteo’s terms and privacy policy apply to the request; its weather
+data is CC BY 4.0.</p>
+<p><strong>Automation webhook</strong> (Settings → Advanced →
+Automation) is off by default: when you turn it on, Salah Bar sends the
+prayer’s name, its time and iqama, the city and the Hijri date to the
+one address you choose, at prayer times and around the adhan. That
+address must be on your own network unless you tick “Allow internet
+addresses”.</p>
+<p>Links you tap (such as Tanzil.net for the Quran text’s source) open
+in your browser. Directions to a mosque open in the maps app you choose
+on your phone; that app’s own privacy policy applies.</p>
+<h2 id="children">Children</h2>
+<p>Salah Bar collects no data from anyone, including children.</p>
+<h2 id="changes">Changes</h2>
+<p>If this policy changes, the new version will be published on this
+page with a new date.</p>
+<h2 id="contact">Contact</h2>
+<p>Questions about privacy: open an issue at
+https://github.com/be-liever95/salah-bar/issues.</p>
+</main>
+<footer class="foot">
+  <a href="../">Salah Bar</a> · <a href="../privacy/">Privacy policy</a> · <a href="https://github.com/be-liever95/salah-bar/issues">Contact</a>
+</footer>
+</body>
+</html>
