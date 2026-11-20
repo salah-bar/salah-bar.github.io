@@ -18,7 +18,7 @@ own Google Drive.">
 <main class="doc">
 <h1 id="salah-bar-for-android-privacy-policy">Salah Bar for Android:
 Privacy Policy</h1>
-<p><em>Last updated: 31 October 2026</em></p>
+<p><em>Last updated: 15 November 2026</em></p>
 <p><strong>In short: Salah Bar collects nothing.</strong> There are no
 accounts, no analytics, no ads and no tracking. Your settings, your
 location and your prayer log stay on your phone, unless you choose to
@@ -90,6 +90,14 @@ days count as excused, and writes the excused days you finish logging as
 menstruation periods. This data is used only for that: it is never sent
 to the developer or anyone else, never used for advertising, and never
 sold. You can remove the permission at any time in Health Connect.</li>
+<li><strong>The zakat sheet</strong> (what you own and owe, the prices
+you type, your zakat date) is kept on your phone and left out of
+Android’s cloud backup; only your own sync (below) carries it to your
+other devices. To value gold and silver, the sheet asks the internet for
+the day’s gold and silver price lists (see the table below), unless you
+turn off <em>Get prices from the internet</em> on the sheet; that
+request carries nothing about you or your sheet, not even its
+currency.</li>
 <li><strong>The Tasbih counter</strong> is kept on your phone; it isn’t
 synced.</li>
 <li><strong>Reminders</strong> are scheduled on your phone with
@@ -280,6 +288,19 @@ terms of use</a>)</td>
 you turn it on, then at most every 30 minutes while the app is open</td>
 <td>Your location rounded to 0.1° (about 10 km), to get the current
 weather there; nothing else is sent with it</td>
+</tr>
+<tr>
+<td><strong>The free currency API by fawazahmed0</strong>
+(cdn.jsdelivr.net, with latest.currency-api.pages.dev as the
+fallback)</td>
+<td>Only while the zakat sheet is open with <em>Get prices from the
+internet</em> on (on by default; the switch is on the sheet, for this
+phone): when you open the sheet, at most every 6 hours, or when you tap
+<em>Try again</em></td>
+<td>Two requests for the day’s public price lists, one for gold and one
+for silver, each in every currency; nothing about you, your sheet or the
+currency you count in (jsDelivr’s privacy policy applies to
+cdn.jsdelivr.net, Cloudflare’s to the fallback)</td>
 </tr>
 <tr>
 <td><strong>OpenFreeMap</strong> (map tiles, from OpenStreetMap
