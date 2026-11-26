@@ -18,7 +18,7 @@ own Google Drive.">
 <main class="doc">
 <h1 id="datenschutzerklärung-von-salah-bar">Datenschutzerklärung von
 Salah Bar</h1>
-<p><em>Zuletzt aktualisiert: 1. November 2026</em></p>
+<p><em>Zuletzt aktualisiert: 26. November 2026</em></p>
 <p class="langs">
 <a href="index.html">English</a> · <a href="tr.html">Türkçe</a> ·
 <a href="ar.html">العربية</a> · <a href="ur.html">اردو</a> ·
@@ -29,10 +29,12 @@ Melayu</a> · <a href="fr.html">Français</a> ·
 </p>
 <p><strong>Kurz gesagt:</strong> Salah Bar hat kein Konto, keine
 Analyse, keine Werbung und kein Tracking, und der Entwickler erhält
-keine deiner Daten. Deine Einstellungen, dein Gebetsprotokoll und deine
-übrigen Daten bleiben auf deinen eigenen Geräten. Funktionen, die du
-wählst, senden nur das Nötige an den Dienst, der antwortet: Das Wetter
-und Moscheen in der Nähe senden deinen Standort, gerundet, an den
+keine deiner Daten, außer den Adhan-Zeiten, die du an den Server von
+Salah Bar sendest, wenn du einen Amazon Echo verknüpfst (<a
+href="#alexa">Details</a>). Deine Einstellungen, dein Gebetsprotokoll
+und deine übrigen Daten bleiben auf deinen eigenen Geräten. Funktionen,
+die du wählst, senden nur das Nötige an den Dienst, der antwortet: Das
+Wetter und Moscheen in der Nähe senden deinen Standort, gerundet, an den
 Wetter- oder Kartendienst; Karten laden Bilder des gezeigten Gebiets;
 Downloads fragen die Dateien an, die du wählst. Die Erklärung jeder App
 unten listet sie alle auf.</p>
@@ -83,10 +85,11 @@ E-Mail-Adresse des Kontos und die Anmeldeberechtigung (von den
 Google-Play-Diensten auf Android verwahrt, im Schlüsselbund auf Mac,
 iPhone und iPad und mit dem Windows-Datenschutz für dein Benutzerkonto
 auf Windows).</li>
-<li><strong>Nirgends sonst.</strong> Salah Bar hat keinen Server. Die
-Datei geht über eine verschlüsselte (HTTPS-)Verbindung direkt von deinem
-Gerät in dein eigenes Drive. Der Entwickler erhält, sieht und speichert
-weder die Datei noch deine E-Mail-Adresse noch deine Anmeldung.</li>
+<li><strong>Nirgends sonst.</strong> Die Synchronisierung nutzt keinen
+Server von Salah Bar. Die Datei geht über eine verschlüsselte
+(HTTPS-)Verbindung direkt von deinem Gerät in dein eigenes Drive. Der
+Entwickler erhält, sieht und speichert weder die Datei noch deine
+E-Mail-Adresse noch deine Anmeldung.</li>
 </ul>
 <h3 id="wie-sie-genutzt-werden">Wie sie genutzt werden</h3>
 <p>Nur, um Salah Bar zwischen deinen eigenen Geräten zu synchronisieren:
@@ -123,10 +126,94 @@ und ihre Übertragung an andere Apps werden der <a
 href="https://developers.google.com/terms/api-services-user-data-policy">Google
 API Services User Data Policy</a> entsprechen, einschließlich der
 Anforderungen zur eingeschränkten Nutzung (Limited Use).</p>
+<h2 id="alexa">Adhan auf Amazon Echo (Alexa)</h2>
+<p>Dies ist der einzige Teil von Salah Bar, der einen Server nutzt, und
+nur, wenn du ihn einschaltest (Einstellungen → Smart Home → Amazon Echo
+→ Mit Alexa verknüpfen, auf Mac, iPhone oder Android). Ein Echo kann
+keinen Ton von deinem Computer oder Telefon übernehmen, deshalb starten
+der Alexa-Skill von Salah Bar und ein kleiner Server, den Salah Bar bei
+Cloudflare (Cloudflare Workers) betreibt, den Adhan auf deinem Echo.
+Eine kleine Funktion bei Amazon Web Services (EU (Ireland) und US East
+(N. Virginia); Alexa nutzt die für die Region deines Kontos) leitet nur
+die Smart-Home-Nachrichten von Alexa an diesen Server weiter und
+speichert nichts.</p>
+<h3 id="was-die-app-sendet">Was die App sendet</h3>
+<ul>
+<li><strong>Die Adhan-Zeiten für das kommende Jahr</strong> (zum
+Beispiel „Maghrib, 25. November 2026 15:22:03 UTC“), für die Stadt, die
+du für die Echos gewählt hast, und die Gebete, die du gewählt hast, und
+welche der Adhan-Aufnahmen von Salah Bar abgespielt werden soll. Ein
+Jahr, damit die Echos weiterspielen, während dein Telefon nicht da ist.
+Sie sendet sie erneut, wenn sich die Zeiten ändern.</li>
+<li>Wenn du für eine Routine <em>Auch auf Echo</em> einschaltest oder
+<em>Auf Echo abspielen</em> nutzt: welche Sure oder welche Duas
+abgespielt werden sollen (die Adressen der Aufnahmen, die die App
+streamt) und wann, und deinen Koran-Rezitator für Sprachanfragen.</li>
+<li><strong>Nicht</strong> deine Stadt, deinen Standort, deine
+Berechnungsmethode oder irgendeine andere Einstellung. Der Server
+berechnet nie eine Gebetszeit; er spielt nur zu den Zeiten ab, die die
+App gesendet hat.</li>
+</ul>
+<p><strong>Was die Zeiten verraten können:</strong></p>
+<ul>
+<li><em>Ungefähr, wo du bist.</em> Gebetszeiten hängen vom Ort ab, daher
+könnte jemand, der ein Jahr davon liest, die Gegend abschätzen, für die
+sie berechnet wurden, nicht aber deine Adresse. Der Server speichert
+keine Stadt und keine Koordinaten, und niemand liest die Zeiten, außer
+wie unten beschrieben.</li>
+<li><em>Tage der Verhinderung.</em> Wenn du <em>Für Schwestern</em>
+nutzt und für die Zeit der Verhinderung keinen Adhan gewählt hast, lässt
+die App den Adhan an den Tagen der Verhinderung, die sie bereits kennt,
+aus dem Gesendeten weg, sodass der Echo an diesen Tagen still bleibt.
+Eine Lücke von einigen Tagen in den gesendeten Zeiten könnte jemandem,
+der sie liest, einen Hinweis darauf geben. Die App sendet nie eine
+Vorhersage oder andere Zyklusdaten.</li>
+</ul>
+<h3 id="was-der-server-speichert">Was der Server speichert</h3>
+<p>Eine zufällige Verknüpfungs-ID und ein Geheimnis, das nur deine App
+kennt (als Einweg-Hash gespeichert); die Tokens, die Amazon dem Skill
+gibt, um dein Alexa zu erreichen, und die anonyme Alexa-Nutzer-ID, die
+Amazon dem Skill zuweist; die anstehenden Zeiten und die Aufnahmen der
+Routinen; wo ein Echo den Koran oder die Duas angehalten hat, um dort
+fortzusetzen; für jeden Echo, der abgespielt hat, eine Nummer, den Namen
+und die Gebete, die du in der App für ihn gewählt hast, und einen
+anonymen Schlüssel, der aus Amazons Geräte-ID abgeleitet ist; und, für
+die letzten 7 Tage, wann jeder Adhan fällig war und wann jeder Echo ihn
+gestartet hat, damit die App es dir zeigen und der Server um deine
+übliche Verzögerung früher starten kann. Kein Name, keine
+E-Mail-Adresse, keine Sprachaufnahme, kein Standort und kein
+Salah-Bar-Konto.</p>
+<h3 id="was-amazon-erhält">Was Amazon erhält</h3>
+<p>Eine virtuelle Taste, „Salah Bar adhan“, erscheint in deiner
+Alexa-App als Türklingel, und Salah Bar drückt sie zu jeder Adhan-Zeit;
+deine Routine öffnet dann den Salah-Bar-Skill auf dem Echo, der den
+Adhan abspielt. Amazon verarbeitet dies gemäß seiner eigenen
+Datenschutzerklärung. Die Adhan-Aufnahmen werden vom Server von Salah
+Bar gestreamt, Koran-Rezitationen von mp3quran.net und Duas von
+hisnmuslim.com, wie in den Apps. Cloudflare betreibt den Server für
+Salah Bar und kann seine üblichen kurzen technischen Protokolle (etwa
+die IP-Adressen von Anfragen) gemäß seinen eigenen Richtlinien
+aufbewahren.</p>
+<h3 id="wie-lange-und-wie-du-es-löschst">Wie lange, und wie du es
+löschst</h3>
+<p>Anstehende Zeiten werden bei jeder Aktualisierung ersetzt und nach
+dem Abspielen verworfen; Startzeiten werden 7 Tage aufbewahrt.
+<em>Trennen</em> in Salah Bar oder das Deaktivieren des Salah-Bar-Skills
+in der Alexa-App löscht sofort alles, was der Server über dich
+speichert. Eine Verknüpfung, die die App 400 Tage lang nicht
+aktualisiert hat, wird automatisch gelöscht, und eine nie abgeschlossene
+Kopplung nach 1 Tag. Damit niemand Kopplungscodes errät, zählt der
+Server falsche Codes pro (gehashter) IP-Adresse für einige Minuten.</p>
+<h3 id="wer-es-sehen-kann">Wer es sehen kann</h3>
+<p>Nur der Server, um den Adhan abzuspielen, und der Entwickler von
+Salah Bar, wenn er einem Fehler nachgeht. Es wird nicht verkauft,
+weitergegeben oder für Werbung genutzt.</p>
 <h2 id="kinder">Kinder</h2>
 <p>Salah Bar hat keine Konten und fragt niemanden, auch keine Kinder,
 nach persönlichen Informationen. Der Entwickler erhält von niemandem
-Daten.</p>
+Daten, außer den Adhan-Zeiten eines verknüpften Amazon Echo (<a
+href="#alexa">oben</a>); Amazon-Kids-Profile können den Alexa-Skill
+nicht nutzen.</p>
 <h2 id="änderungen">Änderungen</h2>
 <p>Wenn sich diese Erklärung ändert, wird die neue Fassung auf dieser
 Seite mit neuem Datum veröffentlicht.</p>

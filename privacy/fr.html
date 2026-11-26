@@ -18,7 +18,7 @@ own Google Drive.">
 <main class="doc">
 <h1 id="politique-de-confidentialité-de-salah-bar">Politique de
 confidentialité de Salah Bar</h1>
-<p><em>Dernière mise à jour : 1er novembre 2026</em></p>
+<p><em>Dernière mise à jour : 26 novembre 2026</em></p>
 <p class="langs">
 <a href="index.html">English</a> · <a href="tr.html">Türkçe</a> ·
 <a href="ar.html">العربية</a> · <a href="ur.html">اردو</a> ·
@@ -29,10 +29,12 @@ Melayu</a> · Français · <a href="ru.html">Русский</a> ·
 </p>
 <p><strong>En bref :</strong> Salah Bar n’a ni compte, ni statistiques
 d’usage, ni publicité, ni pistage, et le développeur ne reçoit jamais
-aucune de vos données. Vos réglages, votre journal de prières et vos
-autres données restent sur vos propres appareils. Les fonctions que vous
-choisissez n’envoient que le nécessaire au service qui répond : la météo
-et les Mosquées à proximité envoient votre position, arrondie, au
+aucune de vos données, sauf les heures d’adhan que vous envoyez au
+serveur de Salah Bar si vous associez un Amazon Echo (<a
+href="#alexa">détails</a>). Vos réglages, votre journal de prières et
+vos autres données restent sur vos propres appareils. Les fonctions que
+vous choisissez n’envoient que le nécessaire au service qui répond : la
+météo et les Mosquées à proximité envoient votre position, arrondie, au
 service de météo ou de cartes ; les cartes chargent les images de la
 zone affichée ; les téléchargements demandent les fichiers que vous
 choisissez. La politique de chaque application, ci-dessous, les liste
@@ -86,11 +88,11 @@ l’adresse e-mail du compte et l’autorisation de connexion (conservée par
 les services Google Play sur Android, dans le trousseau sur Mac, iPhone
 et iPad, et avec la protection des données de Windows pour votre compte
 utilisateur sur Windows).</li>
-<li><strong>Nulle part ailleurs.</strong> Salah Bar n’a pas de serveur.
-Le fichier va directement de votre appareil à votre propre Drive par une
-connexion chiffrée (HTTPS). Le développeur ne reçoit, ne voit et ne
-conserve jamais le fichier, votre adresse e-mail ni votre
-connexion.</li>
+<li><strong>Nulle part ailleurs.</strong> La synchronisation n’utilise
+aucun serveur de Salah Bar. Le fichier va directement de votre appareil
+à votre propre Drive par une connexion chiffrée (HTTPS). Le développeur
+ne reçoit, ne voit et ne conserve jamais le fichier, votre adresse
+e-mail ni votre connexion.</li>
 </ul>
 <h3 id="comment-elles-sont-utilisées">Comment elles sont utilisées</h3>
 <p>Uniquement pour synchroniser Salah Bar entre vos propres appareils :
@@ -127,10 +129,96 @@ et leur transfert à toute autre application, respecteront la <a
 href="https://developers.google.com/terms/api-services-user-data-policy">Google
 API Services User Data Policy</a>, y compris les exigences d’utilisation
 limitée (Limited Use).</p>
+<h2 id="alexa">L’adhan sur Amazon Echo (Alexa)</h2>
+<p>C’est la seule partie de Salah Bar qui utilise un serveur, et
+seulement si vous l’activez (Réglages → Maison connectée → Amazon Echo →
+Associer Alexa, sur Mac, iPhone ou Android). Un Echo ne peut pas
+recevoir le son de votre ordinateur ou de votre téléphone ; c’est donc
+la skill Alexa de Salah Bar et un petit serveur exploité par Salah Bar
+chez Cloudflare (Cloudflare Workers) qui lancent l’adhan sur votre Echo.
+Une petite fonction sur Amazon Web Services (EU (Ireland) et US East (N.
+Virginia) ; Alexa utilise celle de la région de votre compte) ne fait
+que transmettre à ce serveur les messages maison connectée d’Alexa, et
+ne conserve rien.</p>
+<h3 id="ce-que-lapplication-envoie">Ce que l’application envoie</h3>
+<ul>
+<li><strong>Les heures d’adhan de l’année à venir</strong> (par exemple
+« Maghrib, 25 novembre 2026 15:22:03 UTC »), pour la ville que vous avez
+choisie pour les Echo et les prières que vous avez choisies, ainsi que
+l’enregistrement d’adhan de Salah Bar à diffuser. Une année, pour que
+les Echo continuent de jouer quand votre téléphone n’est pas là. Elle
+les renvoie quand les heures changent.</li>
+<li>Si vous activez <em>Aussi sur l’Echo</em> pour une routine, ou
+utilisez <em>Lire sur l’Echo</em> : quelle sourate ou quelles douas
+diffuser (les adresses des enregistrements que l’application diffuse en
+streaming) et quand, ainsi que votre récitateur du Coran pour les
+demandes vocales.</li>
+<li><strong>Pas</strong> votre ville, votre position, votre méthode de
+calcul ni aucun autre réglage. Le serveur ne calcule jamais d’heure de
+prière ; il ne fait que jouer aux heures envoyées par
+l’application.</li>
+</ul>
+<p><strong>Ce que les heures peuvent révéler :</strong></p>
+<ul>
+<li><em>À peu près où vous êtes.</em> Les heures de prière dépendent du
+lieu ; quelqu’un qui en lirait une année pourrait donc estimer la zone
+pour laquelle elles ont été calculées, mais pas votre adresse. Le
+serveur ne conserve ni ville ni coordonnées, et personne ne lit les
+heures, sauf comme décrit ci-dessous.</li>
+<li><em>Jours d’empêchement.</em> Si vous utilisez <em>Pour les
+sœurs</em> et avez choisi de ne pas avoir d’adhan pendant l’empêchement,
+l’application retire de ce qu’elle envoie les adhans des jours
+d’empêchement qu’elle connaît déjà, afin que l’Echo reste silencieux ces
+jours-là. Un trou de quelques jours dans les heures envoyées pourrait le
+laisser deviner à quelqu’un qui les lirait. L’application n’envoie
+jamais de prévision ni aucune autre donnée de cycle.</li>
+</ul>
+<h3 id="ce-que-le-serveur-conserve">Ce que le serveur conserve</h3>
+<p>Un identifiant de liaison aléatoire et un secret que seule votre
+application connaît (stocké sous forme de hachage à sens unique) ; les
+jetons qu’Amazon donne à la skill pour joindre votre Alexa et
+l’identifiant d’utilisateur Alexa anonyme qu’Amazon attribue à la skill
+; les heures à venir et les enregistrements des routines ; l’endroit où
+un Echo a mis en pause le Coran ou les douas, pour reprendre ; pour
+chaque Echo qui a joué, un numéro, le nom et les prières que vous lui
+avez choisis dans l’application, et une clé anonyme dérivée de
+l’identifiant d’appareil d’Amazon ; et, pour les 7 derniers jours,
+l’heure prévue de chaque adhan et l’heure à laquelle chaque Echo l’a
+lancé, pour que l’application puisse vous le montrer et que le serveur
+puisse démarrer plus tôt de votre délai habituel. Ni nom, ni adresse
+e-mail, ni enregistrement vocal, ni position, ni compte Salah Bar.</p>
+<h3 id="ce-quamazon-reçoit">Ce qu’Amazon reçoit</h3>
+<p>Un bouton virtuel, « Salah Bar adhan », apparaît dans votre
+application Alexa comme une sonnette, et Salah Bar appuie dessus à
+chaque heure d’adhan ; votre routine ouvre alors la skill Salah Bar sur
+l’Echo, qui diffuse l’adhan. Amazon traite cela selon sa propre
+politique de confidentialité. Les enregistrements d’adhan sont diffusés
+depuis le serveur de Salah Bar ; les récitations du Coran depuis
+mp3quran.net et les douas depuis hisnmuslim.com, comme dans les
+applications. Cloudflare exploite le serveur pour Salah Bar et peut
+conserver ses courts journaux techniques habituels (comme les adresses
+IP des requêtes) selon sa propre politique.</p>
+<h3 id="durée-de-conservation-et-suppression">Durée de conservation, et
+suppression</h3>
+<p>Les heures à venir sont remplacées à chaque mise à jour et supprimées
+une fois jouées ; les heures de lancement sont conservées 7 jours.
+<em>Dissocier</em> dans Salah Bar, ou désactiver la skill Salah Bar dans
+l’application Alexa, supprime immédiatement tout ce que le serveur
+conserve sur vous. Une liaison que l’application n’a pas mise à jour
+depuis 400 jours est supprimée automatiquement, et un appairage jamais
+terminé, après 1 jour. Pour empêcher qu’on devine des codes d’appairage,
+le serveur compte les codes erronés par adresse IP (hachée) pendant
+quelques minutes.</p>
+<h3 id="qui-peut-les-voir">Qui peut les voir</h3>
+<p>Seulement le serveur, pour diffuser l’adhan, et le développeur de
+Salah Bar lorsqu’il examine une panne. Ces données ne sont ni vendues,
+ni partagées, ni utilisées à des fins publicitaires.</p>
 <h2 id="enfants">Enfants</h2>
 <p>Salah Bar n’a pas de compte et ne demande d’informations personnelles
 à personne, y compris aux enfants. Le développeur ne reçoit de données
-de personne.</p>
+de personne, sauf les heures d’adhan d’un Amazon Echo associé (<a
+href="#alexa">ci-dessus</a>) ; les profils Amazon Kids ne peuvent pas
+utiliser la skill Alexa.</p>
 <h2 id="modifications">Modifications</h2>
 <p>Si cette politique change, la nouvelle version sera publiée sur cette
 page avec une nouvelle date.</p>

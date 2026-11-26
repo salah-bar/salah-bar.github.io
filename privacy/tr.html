@@ -18,7 +18,7 @@ own Google Drive.">
 <main class="doc">
 <h1 id="salah-bar-gizlilik-politikası">Salah Bar Gizlilik
 Politikası</h1>
-<p><em>Son güncelleme: 1 Kasım 2026</em></p>
+<p><em>Son güncelleme: 26 Kasım 2026</em></p>
 <p class="langs">
 <a href="index.html">English</a> · Türkçe ·
 <a href="ar.html">العربية</a> · <a href="ur.html">اردو</a> ·
@@ -29,8 +29,10 @@ Melayu</a> · <a href="fr.html">Français</a> ·
 <a href="bn.html">বাংলা</a>
 </p>
 <p><strong>Kısacası:</strong> Salah Bar’da hesap, analiz, reklam ve
-takip yoktur; geliştirici verilerinizin hiçbirini almaz. Ayarlarınız,
-namaz kaydınız ve diğer verileriniz kendi cihazlarınızda kalır. Sizin
+takip yoktur; geliştirici verilerinizin hiçbirini almaz; tek istisna,
+bir Amazon Echo bağlarsanız Salah Bar’ın sunucusuna gönderdiğiniz ezan
+vakitleridir (<a href="#alexa">ayrıntılar</a>). Ayarlarınız, namaz
+kaydınız ve diğer verileriniz kendi cihazlarınızda kalır. Sizin
 seçtiğiniz özellikler yalnızca gerekeni, cevap veren hizmete gönderir:
 hava durumu ve Yakındaki camiler konumunuzu yuvarlanmış olarak hava
 durumu veya harita hizmetine gönderir; haritalar gösterilen bölgenin
@@ -79,10 +81,10 @@ asla tutmaz.</li>
 adresi ve oturum izni (Android’de Google Play hizmetleri tutar; Mac,
 iPhone ve iPad’de Anahtar Zinciri’nde; Windows’ta kullanıcı hesabınız
 için Windows veri korumasıyla).</li>
-<li><strong>Başka hiçbir yerde.</strong> Salah Bar’ın sunucusu yoktur.
-Dosya cihazınızdan doğrudan kendi Drive’ınıza şifreli (HTTPS)
-bağlantıyla gider. Geliştirici dosyayı, e-posta adresinizi veya
-oturumunuzu asla almaz, görmez, saklamaz.</li>
+<li><strong>Başka hiçbir yerde.</strong> Eşitleme Salah Bar’ın hiçbir
+sunucusunu kullanmaz. Dosya cihazınızdan doğrudan kendi Drive’ınıza
+şifreli (HTTPS) bağlantıyla gider. Geliştirici dosyayı, e-posta
+adresinizi veya oturumunuzu asla almaz, görmez, saklamaz.</li>
 </ul>
 <h3 id="nasıl-kullanılır">Nasıl kullanılır</h3>
 <p>Yalnızca Salah Bar’ı kendi cihazlarınız arasında eşitlemek için: her
@@ -118,9 +120,89 @@ bir uygulamaya aktarması, Sınırlı Kullanım (Limited Use) şartları dahil
 olmak üzere <a
 href="https://developers.google.com/terms/api-services-user-data-policy">Google
 API Hizmetleri Kullanıcı Verileri Politikası</a>’na uyacaktır.</p>
+<h2 id="alexa">Amazon Echo’da ezan (Alexa)</h2>
+<p>Bu, Salah Bar’ın sunucu kullanan tek bölümüdür ve yalnızca siz
+açarsanız çalışır (Ayarlar → Akıllı Ev → Amazon Echo → Alexa’ya Bağla;
+Mac, iPhone veya Android’de). Echo bilgisayarınızdan veya telefonunuzdan
+ses alamaz; bu yüzden Echo’nuzda ezanı Salah Bar’ın Alexa becerisi ve
+Salah Bar’ın Cloudflare’de (Cloudflare Workers) çalıştırdığı küçük bir
+sunucu başlatır. Amazon Web Services’teki küçük bir fonksiyon (EU
+(Ireland) ve US East (N. Virginia); Alexa, hesabınızın bölgesine ait
+olanı kullanır) yalnızca Alexa’nın akıllı ev mesajlarını bu sunucuya
+iletir ve hiçbir şey saklamaz.</p>
+<h3 id="uygulamanın-gönderdikleri">Uygulamanın gönderdikleri</h3>
+<ul>
+<li><strong>Önümüzdeki bir yılın ezan vakitleri</strong> (örneğin
+“Akşam, 25 Kasım 2026 15:22:03 UTC”): Echo’lar için seçtiğiniz şehir ve
+seçtiğiniz namazlar için; ayrıca Salah Bar’ın ezan kayıtlarından
+hangisinin çalınacağı. Bir yıl, telefonunuz yanında değilken de Echo’lar
+çalmaya devam etsin diye. Vakitler değiştiğinde bunları yeniden
+gönderir.</li>
+<li>Bir rutin için <em>Echo’da da</em>’yı açarsanız veya <em>Echo’da
+çal</em>’ı kullanırsanız: hangi surenin veya duaların çalınacağı
+(uygulamanın akış olarak çaldığı kayıtların adresleri) ve ne zaman;
+ayrıca sesli istekler için Kuran kâriniz.</li>
+<li>Şehrinizi, konumunuzu, hesaplama yönteminizi veya başka herhangi bir
+ayarınızı <strong>göndermez</strong>. Sunucu hiçbir zaman namaz vakti
+hesaplamaz; yalnızca uygulamanın gönderdiği vakitlerde çalar.</li>
+</ul>
+<p><strong>Vakitlerin ele verebilecekleri:</strong></p>
+<ul>
+<li><em>Aşağı yukarı nerede olduğunuz.</em> Namaz vakitleri yere
+bağlıdır; bu yüzden bir yıllık vakitleri okuyan biri, hesaplandıkları
+bölgeyi tahmin edebilir, ama adresinizi değil. Sunucu hiçbir şehir veya
+koordinat saklamaz ve vakitleri aşağıda anlatılanlar dışında kimse
+okumaz.</li>
+<li><em>Özel günler.</em> <em>Hanımlar için</em>’i kullanıyor ve özel
+günlerde ezan olmamasını seçtiyseniz, uygulama zaten bildiği özel
+günlerin ezanlarını gönderdiklerinin dışında bırakır; böylece Echo o
+günlerde sessiz kalır. Gönderilen vakitlerdeki birkaç günlük bir boşluk,
+onları okuyan birine bunu sezdirebilir. Uygulama hiçbir zaman bir tahmin
+veya başka herhangi bir döngü verisi göndermez.</li>
+</ul>
+<h3 id="sunucunun-sakladıkları">Sunucunun sakladıkları</h3>
+<p>Rastgele bir bağlantı kimliği ve yalnızca uygulamanızın bildiği bir
+gizli anahtar (tek yönlü özet (hash) olarak saklanır); Amazon’un
+beceriye Alexa’nıza ulaşması için verdiği belirteçler (token) ve
+Amazon’un beceriye atadığı anonim Alexa kullanıcı kimliği; yaklaşan
+vakitler ve rutinlerin kayıtları; kaldığı yerden devam etmek için, bir
+Echo’nun Kuran’ı veya duaları nerede duraklattığı; çalan her Echo için
+bir numara, uygulamada onun için seçtiğiniz ad ve namazlar ve Amazon’un
+cihaz kimliğinden türetilmiş anonim bir anahtar; ve son 7 gün için her
+ezanın vaktinin ne zaman geldiği ve her Echo’nun onu ne zaman
+başlattığı; böylece uygulama bunu size gösterebilir ve sunucu her
+zamanki gecikmeniz kadar erken başlayabilir. Ad, e-posta adresi, ses
+kaydı, konum veya Salah Bar hesabı yoktur.</p>
+<h3 id="amazonun-aldıkları">Amazon’un aldıkları</h3>
+<p>Alexa uygulamanızda “Salah Bar adhan” adlı sanal bir düğme kapı zili
+olarak görünür ve Salah Bar her ezan vaktinde ona basar; ardından
+rutininiz Echo’da Salah Bar becerisini açar ve beceri ezanı çalar.
+Amazon bunu kendi gizlilik bildirimi kapsamında işler. Ezan kayıtları
+Salah Bar’ın sunucusundan, Kuran tilavetleri mp3quran.net’ten, dualar
+ise hisnmuslim.com’dan, uygulamalardaki gibi akış olarak çalınır.
+Cloudflare sunucuyu Salah Bar için çalıştırır ve kendi politikası
+kapsamında olağan kısa teknik kayıtlarını (isteklerin IP adresleri gibi)
+saklayabilir.</p>
+<h3 id="ne-kadar-süre-saklanır-nasıl-silinir">Ne kadar süre saklanır,
+nasıl silinir</h3>
+<p>Yaklaşan vakitler her güncellemede yenileriyle değiştirilir ve
+çalındıktan sonra silinir; başlama zamanları 7 gün saklanır. Salah
+Bar’da <em>Bağlantıyı kaldır</em> veya Alexa uygulamasında Salah Bar
+becerisini devre dışı bırakmak, sunucunun sizinle ilgili sakladığı her
+şeyi hemen siler. Uygulamanın 400 gündür güncellemediği bir bağlantı
+otomatik olarak silinir; hiç tamamlanmamış bir eşleştirme de 1 gün sonra
+silinir. Eşleştirme kodlarının tahmin edilmesini önlemek için sunucu,
+yanlış kodları (hash’lenmiş) IP adresi başına birkaç dakika boyunca
+sayar.</p>
+<h3 id="kimler-görebilir">Kimler görebilir</h3>
+<p>Yalnızca ezanı çalmak için sunucu ve bir arızayı incelerken Salah
+Bar’ın geliştiricisi. Bunlar satılmaz, paylaşılmaz ve reklam için
+kullanılmaz.</p>
 <h2 id="çocuklar">Çocuklar</h2>
 <p>Salah Bar’da hesap yoktur ve çocuklar dahil hiç kimseden kişisel
-bilgi istemez. Geliştirici hiç kimseden veri almaz.</p>
+bilgi istemez. Geliştirici, bağlı bir Amazon Echo’nun ezan vakitleri (<a
+href="#alexa">yukarıda</a>) dışında hiç kimseden veri almaz; Amazon Kids
+profilleri Alexa becerisini kullanamaz.</p>
 <h2 id="değişiklikler">Değişiklikler</h2>
 <p>Bu politika değişirse yeni sürümü bu sayfada yeni bir tarihle
 yayımlanır.</p>

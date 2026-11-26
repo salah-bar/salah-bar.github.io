@@ -18,7 +18,7 @@ own Google Drive.">
 <main class="doc">
 <h1 id="política-de-privacidad-de-salah-bar">Política de privacidad de
 Salah Bar</h1>
-<p><em>Última actualización: 1 de noviembre de 2026</em></p>
+<p><em>Última actualización: 26 de noviembre de 2026</em></p>
 <p class="langs">
 <a href="index.html">English</a> · <a href="tr.html">Türkçe</a> ·
 <a href="ar.html">العربية</a> · <a href="ur.html">اردو</a> ·
@@ -29,13 +29,15 @@ Melayu</a> · <a href="fr.html">Français</a> ·
 </p>
 <p><strong>En resumen:</strong> Salah Bar no tiene cuentas, ni
 analíticas, ni anuncios, ni rastreo, y el desarrollador nunca recibe
-ninguno de tus datos. Tus ajustes, tu registro de oraciones y el resto
-de tus datos se quedan en tus propios dispositivos. Las funciones que
-eliges solo envían lo necesario al servicio que responde: el tiempo y
-las Mezquitas cercanas envían tu ubicación, redondeada, al servicio del
-tiempo o de mapas; los mapas cargan imágenes de la zona mostrada; las
-descargas piden los archivos que eliges. La política de cada app, más
-abajo, los enumera todos.</p>
+ninguno de tus datos, salvo las horas del adhan que envías al servidor
+de Salah Bar si vinculas un Amazon Echo (<a href="#alexa">detalles</a>).
+Tus ajustes, tu registro de oraciones y el resto de tus datos se quedan
+en tus propios dispositivos. Las funciones que eliges solo envían lo
+necesario al servicio que responde: el tiempo y las Mezquitas cercanas
+envían tu ubicación, redondeada, al servicio del tiempo o de mapas; los
+mapas cargan imágenes de la zona mostrada; las descargas piden los
+archivos que eliges. La política de cada app, más abajo, los enumera
+todos.</p>
 <p>Esta página cubre todas las apps de Salah Bar. La política completa
 de cada app, con todo lo que hace en el dispositivo y cada servicio al
 que puede conectarse, está aquí:</p>
@@ -83,10 +85,11 @@ dirección de correo de la cuenta y el permiso de inicio de sesión (lo
 guardan los servicios de Google Play en Android, el llavero en Mac,
 iPhone e iPad, y la protección de datos de Windows para tu cuenta de
 usuario en Windows).</li>
-<li><strong>En ningún otro sitio.</strong> Salah Bar no tiene servidor.
-El archivo va directamente de tu dispositivo a tu propio Drive por una
-conexión cifrada (HTTPS). El desarrollador nunca recibe, ve ni guarda el
-archivo, tu correo ni tu inicio de sesión.</li>
+<li><strong>En ningún otro sitio.</strong> La sincronización no usa
+ningún servidor de Salah Bar. El archivo va directamente de tu
+dispositivo a tu propio Drive por una conexión cifrada (HTTPS). El
+desarrollador nunca recibe, ve ni guarda el archivo, tu correo ni tu
+inicio de sesión.</li>
 </ul>
 <h3 id="cómo-se-usan">Cómo se usan</h3>
 <p>Solo para sincronizar Salah Bar entre tus propios dispositivos: cada
@@ -123,9 +126,89 @@ Google, y su transferencia a cualquier otra app, cumplirán la <a
 href="https://developers.google.com/terms/api-services-user-data-policy">Google
 API Services User Data Policy</a>, incluidos los requisitos de uso
 limitado (Limited Use).</p>
+<h2 id="alexa">El adhan en Amazon Echo (Alexa)</h2>
+<p>Esta es la única parte de Salah Bar que usa un servidor, y solo si la
+activas (Ajustes → Hogar inteligente → Amazon Echo → Vincular Alexa, en
+Mac, iPhone o Android). Un Echo no puede recibir audio de tu ordenador o
+tu teléfono, así que la skill de Alexa de Salah Bar y un pequeño
+servidor que Salah Bar gestiona en Cloudflare (Cloudflare Workers)
+inician el adhan en tu Echo. Una pequeña función en Amazon Web Services
+(EU (Ireland) y US East (N. Virginia); Alexa usa la de la región de tu
+cuenta) solo pasa a ese servidor los mensajes de hogar inteligente de
+Alexa y no guarda nada.</p>
+<h3 id="lo-que-envía-la-app">Lo que envía la app</h3>
+<ul>
+<li><strong>Las horas del adhan para el próximo año</strong> (por
+ejemplo «Maghrib, 25 de noviembre de 2026 15:22:03 UTC»), para la ciudad
+que elegiste para los Echo y las oraciones que elegiste, y cuál de las
+grabaciones de adhan de Salah Bar reproducir. Un año, para que los Echo
+sigan sonando mientras tu teléfono no está. Las vuelve a enviar cuando
+cambian las horas.</li>
+<li>Si activas <em>También en Echo</em> para una rutina, o usas
+<em>Reproducir en Echo</em>: qué sura o qué duas reproducir (las
+direcciones de las grabaciones que la app transmite) y cuándo, y tu
+recitador del Corán para las peticiones de voz.</li>
+<li><strong>No</strong> tu ciudad, tu ubicación, tu método de cálculo ni
+ningún otro ajuste. El servidor nunca calcula una hora de oración; solo
+reproduce a las horas que envió la app.</li>
+</ul>
+<p><strong>Lo que pueden revelar las horas:</strong></p>
+<ul>
+<li><em>Más o menos dónde estás.</em> Las horas de oración dependen del
+lugar, así que alguien que leyera las de un año podría estimar la zona
+para la que se calcularon, aunque no tu dirección. El servidor no guarda
+ninguna ciudad ni coordenadas, y nadie lee las horas salvo como se
+describe más abajo.</li>
+<li><em>Días de impedimento.</em> Si usas <em>Para hermanas</em> y
+elegiste no tener adhan durante el impedimento, la app deja fuera de lo
+que envía el adhan de los días de impedimento que ya conoce, para que el
+Echo se quede en silencio esos días. Un hueco de unos días en las horas
+enviadas podría dar a entender eso a quien las lea. La app nunca envía
+una predicción ni ningún otro dato del ciclo.</li>
+</ul>
+<h3 id="lo-que-guarda-el-servidor">Lo que guarda el servidor</h3>
+<p>Un id de vínculo aleatorio y un secreto que solo conoce tu app
+(guardado como hash unidireccional); los tokens que Amazon da a la skill
+para llegar a tu Alexa y el id de usuario de Alexa anónimo que Amazon
+asigna a la skill; las próximas horas y las grabaciones de las rutinas;
+dónde pausó un Echo el Corán o las duas, para reanudar; para cada Echo
+que reprodujo, un número, el nombre y las oraciones que elegiste para él
+en la app, y una clave anónima derivada del id de dispositivo de Amazon;
+y, de los últimos 7 días, cuándo tocaba cada adhan y cuándo lo inició
+cada Echo, para que la app pueda mostrártelo y el servidor pueda empezar
+antes según tu retraso habitual. Ningún nombre, dirección de correo,
+grabación de voz, ubicación ni cuenta de Salah Bar.</p>
+<h3 id="lo-que-recibe-amazon">Lo que recibe Amazon</h3>
+<p>Un botón virtual, «Salah Bar adhan», aparece en tu app de Alexa como
+un timbre, y Salah Bar lo pulsa a cada hora del adhan; tu rutina abre
+entonces la skill de Salah Bar en el Echo, que reproduce el adhan.
+Amazon lo trata según su propio aviso de privacidad. Las grabaciones del
+adhan se transmiten desde el servidor de Salah Bar; las recitaciones del
+Corán, desde mp3quran.net, y las duas, desde hisnmuslim.com, como en las
+apps. Cloudflare gestiona el servidor para Salah Bar y puede guardar sus
+registros técnicos breves habituales (como las direcciones IP de las
+peticiones) según su propia política.</p>
+<h3 id="cuánto-tiempo-y-cómo-borrarlo">Cuánto tiempo, y cómo
+borrarlo</h3>
+<p>Las próximas horas se sustituyen en cada actualización y se descartan
+una vez reproducidas; las horas de inicio se guardan 7 días.
+<em>Desvincular</em> en Salah Bar, o desactivar la skill de Salah Bar en
+la app de Alexa, borra al instante todo lo que el servidor guarda sobre
+ti. Un vínculo que la app no ha actualizado en 400 días se borra
+automáticamente, y un emparejamiento que nunca se completó, al cabo de 1
+día. Para impedir que alguien adivine códigos de emparejamiento, el
+servidor cuenta los códigos erróneos por dirección IP (en hash) durante
+unos minutos.</p>
+<h3 id="quién-puede-verlo">Quién puede verlo</h3>
+<p>Solo el servidor, para reproducir el adhan, y el desarrollador de
+Salah Bar al investigar un fallo. No se vende, no se comparte ni se usa
+para publicidad.</p>
 <h2 id="menores">Menores</h2>
 <p>Salah Bar no tiene cuentas y no pide información personal a nadie,
-tampoco a menores. El desarrollador no recibe datos de nadie.</p>
+tampoco a menores. El desarrollador no recibe datos de nadie, salvo las
+horas del adhan de un Amazon Echo vinculado (<a
+href="#alexa">arriba</a>); los perfiles de Amazon Kids no pueden usar la
+skill de Alexa.</p>
 <h2 id="cambios">Cambios</h2>
 <p>Si esta política cambia, la nueva versión se publicará en esta página
 con una fecha nueva.</p>
