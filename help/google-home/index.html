@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adhan on Google Nest speakers with Home Assistant</title>
+<meta name="description" content="Salah Bar can play the adhan on your
+Google Nest and Google Home speakers at the exact times the app shows,
+even when your phone and computer are away from home, through your own
+Home Assistant.">
+<link rel="icon" type="image/png" href="../../icon-64.png">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../icon-64.png" alt="" width="32" height="32"> Salah Bar</a>
+  <nav><a href="../../">Home</a> <a href="../../privacy/">Privacy</a></nav>
+</header>
+<main class="doc">
+<h1 id="adhan-on-google-nest-speakers-with-home-assistant">Adhan on
+Google Nest speakers with Home Assistant</h1>
+<p>Salah Bar can play the adhan on your Google Nest and Google Home
+speakers at the exact times the app shows, even when your phone and
+computer are away from home, through your own Home Assistant.</p>
+<h2 id="why-home-assistant">Why Home Assistant?</h2>
+<p>Google doesn’t let apps play their own sound on Nest speakers from
+the internet. A Google Home routine can only speak text or ask the
+assistant to play something from a music service, so it can’t play Salah
+Bar’s adhan at the right second. Something at home has to send the sound
+to the speaker:</p>
+<ul>
+<li><strong>Salah Bar for Mac or Windows</strong> does it over your
+Wi-Fi when that computer is on and at home (Settings → Smart Home →
+Speakers). Nothing else is needed.</li>
+<li><strong>Home Assistant</strong> does it when no Salah Bar computer
+is at home. This page is about that.</li>
+</ul>
+<p>How it works: the Salah Bar app sends your home’s adhan times for the
+next year to Salah Bar’s server. The server calculates nothing; it only
+keeps the times the app worked out. About 20 seconds before each adhan,
+the server calls your Home Assistant’s webhook with the exact time and
+the address of the adhan recording. Home Assistant waits until that
+second on its own clock and plays the adhan on your speakers.</p>
+<h2 id="what-you-need">What you need</h2>
+<ul>
+<li><strong>Home Assistant</strong> running at home, for example a Home
+Assistant Green or a Raspberry Pi, with the <strong>Google Cast</strong>
+integration. It finds your Nest speakers by itself.</li>
+<li>A way for the internet to reach one webhook: <strong>Home Assistant
+Cloud</strong> (Nabu Casa, a paid subscription with a free trial), or
+your own <strong>https</strong> address for Home Assistant.</li>
+<li>Salah Bar for Mac, iPhone or Android, to set it up and to send the
+times. It only has to run now and then (the times last a year), not at
+prayer time.</li>
+</ul>
+<h2 id="set-it-up">Set it up</h2>
+<ol type="1">
+<li><strong>In Home Assistant, make an automation.</strong> Settings →
+Automations &amp; scenes → Create automation → Create new automation → ⋮
+→ Edit in YAML. Paste the automation below (Salah Bar’s <strong>Copy
+automation</strong> button copies the same text). Replace
+<code>media_player.YOUR_SPEAKER</code> with your speaker, or a speaker
+group, from Settings → Devices &amp; services → Google Cast.</li>
+<li><strong>Make the webhook reachable.</strong> Switch to the visual
+editor, open the Webhook trigger’s settings (the gear), turn
+<strong>off</strong> “Only accessible from the local network”, keep only
+<strong>POST</strong>, and save. Home Assistant made a webhook ID that’s
+hard to guess; keep it secret, like a password.</li>
+<li><strong>Copy its address.</strong>
+<ul>
+<li>With Home Assistant Cloud: Settings → Home Assistant Cloud →
+Webhooks → turn on the switch next to “Salah Bar adhan” and copy the
+public address (<code>https://hooks.nabu.casa/…</code>).</li>
+<li>With your own address:
+<code>https://your-home-assistant-address/api/webhook/&lt;the webhook ID&gt;</code>
+(port 8123 is fine).</li>
+</ul></li>
+<li><strong>In Salah Bar:</strong> Settings → Smart Home → Google Home
+(via Home Assistant) → paste the address → Connect. Choose the
+prayers.</li>
+<li><strong>Press Test.</strong> About 20 seconds later your speaker
+should start the adhan. If it starts a little late, raise <strong>Start
+early by</strong> (most speakers need about a second to load the
+sound).</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">alias</span><span class="kw">:</span><span class="at"> Salah Bar adhan</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span><span class="kw">:</span><span class="at"> parallel</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">triggers</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">trigger</span><span class="kw">:</span><span class="at"> webhook</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">webhook_id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;PASTE-YOUR-WEBHOOK-ID&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">allowed_methods</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">POST</span><span class="kw">]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">local_only</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">conditions</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">condition</span><span class="kw">:</span><span class="at"> template</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">value_template</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ trigger.json.app == &#39;salah-bar&#39; and trigger.json.event == &#39;adhan_due&#39; }}&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">actions</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">delay</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">seconds</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ [trigger.json.epoch - as_timestamp(now()) - (trigger.json.lead | float(0)), 0] | max }}&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">action</span><span class="kw">:</span><span class="at"> media_player.play_media</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">target</span><span class="kw">:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">entity_id</span><span class="kw">:</span><span class="at"> media_player.YOUR_SPEAKER</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">media_content_id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;{{ trigger.json.url }}&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">media_content_type</span><span class="kw">:</span><span class="at"> music</span></span></code></pre></div>
+<h3 id="more-than-one-speaker-or-different-speakers-per-prayer">More
+than one speaker, or different speakers per prayer</h3>
+<ul>
+<li><strong>Several speakers at once:</strong> list them under
+<code>entity_id</code>, or use a speaker group made in the Google Home
+app.</li>
+<li><strong>Different speakers per prayer:</strong> replace the last
+action with a <code>choose</code> on <code>trigger.json.prayer</code>
+(<code>fajr</code>, <code>dhuhr</code>, <code>asr</code>,
+<code>maghrib</code>, <code>isha</code>). For example, Fajr only in the
+bedroom.</li>
+<li><strong>A set volume for the adhan:</strong> add a
+<code>media_player.volume_set</code> action before
+<code>play_media</code>.</li>
+</ul>
+<h2 id="what-salah-bar-sends-to-your-home-assistant">What Salah Bar
+sends to your Home Assistant</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;app&quot;</span><span class="fu">:</span> <span class="st">&quot;salah-bar&quot;</span><span class="fu">,</span> <span class="dt">&quot;event&quot;</span><span class="fu">:</span> <span class="st">&quot;adhan_due&quot;</span><span class="fu">,</span> <span class="dt">&quot;prayer&quot;</span><span class="fu">:</span> <span class="st">&quot;maghrib&quot;</span><span class="fu">,</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;time&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11-26T14:52:00Z&quot;</span><span class="fu">,</span> <span class="dt">&quot;epoch&quot;</span><span class="fu">:</span> <span class="dv">1795704720</span><span class="fu">,</span> <span class="dt">&quot;lead&quot;</span><span class="fu">:</span> <span class="fl">1.0</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://…/audio/adhan-madinah.m4a&quot;</span><span class="fu">,</span> <span class="dt">&quot;test&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">}</span></span></code></pre></div>
+<p><code>time</code> and <code>epoch</code> are the adhan’s exact time;
+<code>lead</code> is your “start early by” in seconds; <code>url</code>
+is the recording (Fajr has its own); <code>test</code> is
+<code>true</code> for the Test button. Nothing else: no city, no
+location.</p>
+<h2 id="good-to-know">Good to know</h2>
+<ul>
+<li><strong>Check with Test.</strong> Home Assistant answers “OK” even
+to a webhook it doesn’t know, so the app can only show that a call was
+<em>sent</em>, not that the speaker played. Test is how you know it
+works.</li>
+<li><strong>It needs your home’s internet and Home Assistant.</strong>
+If either is down at prayer time, that adhan doesn’t play.</li>
+<li><strong>What was playing stops.</strong> Home Assistant can’t put
+back music that was playing on a Nest before the adhan.</li>
+<li><strong>The adhan recording</strong> is one of Salah Bar’s own, the
+same one Amazon Echo plays. A recording you added to the app yourself
+isn’t on the server, so it can’t be played this way.</li>
+<li><strong>Turn it off</strong> in Salah Bar (Remove). The server
+deletes your webhook address at once. Unlinking deletes everything the
+server keeps for you.</li>
+<li><strong>Privacy:</strong> the server keeps your webhook address
+encrypted and shows the app only its host name. A Home Assistant Cloud
+address (hooks.nabu.casa) reveals nothing about you. See the <a
+href="../../privacy/">privacy policy</a>.</li>
+</ul>
+</main>
+<footer class="foot">
+  <a href="../../">Salah Bar</a> · <a href="../../privacy/">Privacy policy</a> · <a href="mailto:support@salah-bar.com">support@salah-bar.com</a>
+</footer>
+</body>
+</html>
